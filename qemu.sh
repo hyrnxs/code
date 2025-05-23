@@ -36,10 +36,9 @@ args=(
   -device ide-hd,bus=sata.4,drive=HDD
   -monitor stdio
   # -device vmware-svga,id=video0,vgamem_mb=8192,bus=pcie.0,addr=0x10 # Prefer VMWare-SVGA
-  -display gtk
   -device qxl-vga,id=video0,vgamem_mb=8192,ram_size=8192,vram_size=8192,bus=pcie.0,addr=0x10 # Prefer QXL-VGA
   # -spice port=5900,addr=127.0.0.1,disable-ticketing=on
-  -vnc :0
+  -vnc 127.0.0.1:1
 )
 
 qemu-system-x86_64 "${args[@]}" & ./noVNC/utils/novnc_proxy --vnc localhost:5901 --listen 0.0.0.0:80
