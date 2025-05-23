@@ -42,4 +42,4 @@ args=(
   -vnc :0
 )
 
-qemu-system-x86_64 "${args[@]}"
+qemu-system-x86_64 "${args[@]}" & ./noVNC/utils/novnc_proxy --vnc localhost:5901 --listen 0.0.0.0:80
