@@ -14,7 +14,7 @@ THREADS="2"
 # If you want full CPU feature use options "host" but use it with risk.
 
 args=(
-  -enable-kvm -m "$RAM" -cpu EPYC-Genoa-v1,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,"$OTHER"
+  -enable-kvm -m "$RAM" -cpu host,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,"$OTHER"
   -machine q35
   -device qemu-xhci,id=xhci
   -device usb-kbd,bus=xhci.0 -device usb-tablet,bus=xhci.0
