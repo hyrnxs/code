@@ -1,14 +1,19 @@
 # QEMU options (change your settings here.)
 
-ADDIN="+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
+OTHER="+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"
 
-RAM="16384" # MB
+DIMM1_RAM="4096" # MB
+DIMM2_RAM="4096" # MB
 SOCKETS="1"
 CORES="2"
 THREADS="2"
 
 args=(
-  -enable-kvm -m "$RAM",slots -cpu host,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,"$ADDIN"
+  -enable-kvm -m 0 -cpu host,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,"$OTHER"
+  -object memory-backend-ram,id=mem1,size="$DIMM1_RAM"
+  -device pc-dimm,id=dimm1,memdev=mem1
+  -object memory-backend-ram,id=mem2,size="$DIMM2_RAM"
+  -device pc-dimm,id=dimm2,memdev=mem2
   -machine q35
   -device qemu-xhci,id=xhci
   -device usb-kbd,bus=xhci.0 -device usb-tablet,bus=xhci.0
@@ -34,6 +39,7 @@ args=(
   -display gtk
   -device qxl-vga,id=video0,vgamem_mb=8192,ram_size=8192,vram_size=8192,bus=pcie.0,addr=0x10 # Prefer QXL-VGA
   # -spice port=5900,addr=127.0.0.1,disable-ticketing=on
+  -vnc :0
 )
 
 qemu-system-x86_64 "${args[@]}"
