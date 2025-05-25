@@ -21,7 +21,7 @@ args=(
   -smp "$THREADS",cores="$CORES",sockets="$SOCKETS"
   -device usb-ehci,id=ehci,addr=0x4 -device usb-tablet
   -device usb-kbd,bus=ehci.0
-  -drive file="./win.iso",media=cdrom
+  -drive file="./cd.iso",media=cdrom # Attach ISO
   -device usb-host,vendorid=0x8086,productid=0x0808  
   # -device usb-host,vendorid=0x1b3f,productid=0x2008  # Other USB Sound Card
   -drive if=pflash,format=raw,readonly=on,file="./bios.fd"
@@ -31,7 +31,7 @@ args=(
   # Enable by default, turn off Boot Loader if you want.
   -drive id=Loader,if=none,snapshot=on,format=qcow2,file="./loader.qcow2"
   -device ide-hd,bus=sata.2,drive=Loader
-  -drive id=HDD,if=none,file="./win.img",format=qcow2
+  -drive id=HDD,if=none,file="./hdd.img",format=qcow2
   -device ide-hd,bus=sata.4,drive=HDD
   -monitor stdio
   # -netdev user,id=net0,hostfwd=tcp::2222-:22 -device virtio-net-pci,netdev=net0,id=net0,mac=52:54:00:c9:18:27
