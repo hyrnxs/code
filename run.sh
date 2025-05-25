@@ -2,7 +2,9 @@
 sudo apt update && sudo apt upgrade -y
 
 # Install essential apps
-sudo apt install qemu-system uml-utilities git wget libguestfs-tools p7zip-full make tesseract-ocr tesseract-ocr-eng vim net-tools screen neofetch -y # Some of them are require
+sudo apt install qemu-system uml-utilities virt-manager git \
+    wget libguestfs-tools p7zip-full make dmg2img tesseract-ocr \
+    tesseract-ocr-eng genisoimage vim net-tools screen -y # Some of them are require
 
 # Getting virtual machine packages
 sudo wget -O bios.fd "https://archive.org/download/qemu_bios/bios.fd" # Getting BIOS
