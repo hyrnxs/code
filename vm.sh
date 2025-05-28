@@ -18,7 +18,7 @@ CPU_THREADS="4"
 
 # shellcheck disable=SC2054
 args=(
-  -enable-kvm -m "$ALLOCATED_RAM",slots="$RAM_SLOTS",maxmem="$MAX_RAM" -cpu "$CPU_MODEL",kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,"$MY_OPTIONS"
+  -enable-kvm -m "$ALLOCATED_RAM"M,slots="$RAM_SLOTS",maxmem="$MAX_RAM"M -cpu "$CPU_MODEL",kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,"$MY_OPTIONS"
   -machine q35
   -device qemu-xhci,id=xhci
   -device usb-kbd,bus=xhci.0 -device usb-tablet,bus=xhci.0
@@ -39,7 +39,7 @@ args=(
   -device ide-hd,bus=sata.2,drive=OpenCoreBoot
   -drive id=HDD,if=none,file="./hdd.img",format=qcow2
   -device ide-hd,bus=sata.4,drive=HDD
-  -cdrom 
+  -cdrom "./cd.iso"
   # -netdev tap,id=net0,ifname=tap0,script=no,downscript=no -device virtio-net-pci,netdev=net0,id=net0,mac=52:54:00:c9:18:27
   # -netdev user,id=net0,hostfwd=tcp::2222-:22 -device virtio-net-pci,netdev=net0,id=net0,mac=52:54:00:c9:18:27
   # -netdev user,id=net0 -device vmxnet3,netdev=net0,id=net0,mac=52:54:00:c9:18:27  # Note: Use this line for High Sierra
